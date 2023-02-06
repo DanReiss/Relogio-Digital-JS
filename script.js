@@ -1,26 +1,18 @@
+const display = document.querySelector('.time');
 
-function reload(){
-
-    var display = document.querySelector('.time')
-
-    var timenow = new Date();
-
-    var time =  correct0(timenow.getHours()) + ':' + correct0(timenow.getMinutes()) + ':' + correct0(timenow.getSeconds());
+function reloadData(){
     
-    display.textContent = time;
-}
+    const timeNow = new Date();
 
-function correct0(number){
-    if(number < 10){
-       number = "0" + number
-    }
-    return number
-}
+    const formatedTime = `${correctTime(timeNow.getHours())}:${correctTime(timeNow.getMinutes())}:${correctTime(timeNow.getSeconds())}`; 
 
+    display.textContent = formatedTime;
 
-reload();
-setInterval(reload, 1000);
+    function correctTime(n){
+        if(n < 10) return "0" + n;
+        return n 
+    };
+};
 
-
-
-
+reloadData(); // Chamo primeiro porque o setInterval so irá executar 1sec depois
+setInterval(reloadData, 1000);
